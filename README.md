@@ -399,31 +399,32 @@ cred04                                  kubernetes.io/dockerconfigjson   1      
 cred04 secret should be present
 
 
+If helm fail to install the Corda5 helm charts
+
+
+
+helm list
+helm uninstall <remove all corda chart from list>
+
+Note that helm uninstall doesn't remove K8 secrets create by corda
+
+to remove secrets
+kubectl delete secrets <corda secrets>
+
 
 Setup MGM
 
 
 
-open port 7878 and 8181
+open port 7878 and 8181 on the Azure VM
 
-shown below:
+
 
 open the port 7878 on the Azure VM by going to the Networking section to establish connection for the RPC worker
-
-
-
-
-
 then add inbound port rules:
 
 
-
-
-
 kubectl port-forward --address 0.0.0.0 --namespace corda deployment/corda-corda-enterprise-rest-worker 7878:8888
-
-
-
 
 
 open the port 8181 on the Azure VM by going to the Networking section to establish connection for the P2P worker
@@ -458,11 +459,9 @@ shown below:
 
 
 
+extract the file 
 
 
-
-
-unzip the file 
 
 
 
